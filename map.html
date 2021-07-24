@@ -65,6 +65,8 @@ body {
   });
   directionsRenderer.setMap(map);
 
+  calculateAndDisplayRoute(directionsService, directionsRenderer);
+
   const onChangeHandler = function () {
     calculateAndDisplayRoute(directionsService, directionsRenderer);
   };
@@ -81,18 +83,31 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
   var endLng = -97.7431;
 
 
-/*
   if (document.getElementById("start").value == "route-1") {
-    start = { lat: 41.8781, lng: -87.6298 };
-    end = { lat: 30.2672, lng: -97.7431 };
+
+    startLat = 41.8781; 
+    startLng = -87.6298; 
+
+    endLat = 30.2672; 
+    endLng = -97.7431;
+
   } else if (document.getElementById("start").value == "route-2") {
-    start = { lat: 41.8781, lng: -87.6298 };
-    end = { lat: 39.7392, lng: -104.9903 };
+
+    startLat = 41.8781; 
+    startLng = -87.6298; 
+
+    endLat = 39.7392; 
+    endLng = -104.9903;
+
 } else if (document.getElementById("start").value == "route-3") {
-  start = { lat: 41.8781, lng: -87.6298 };
-    end = { lat: 40.7128, lng: -74.0060 };
+
+    startLat = 41.8781; 
+    startLng = -87.6298; 
+
+    endLat = 40.7128; 
+    endLng = -74.0060;
 }
-*/
+
 
 const start = { lat: startLat, lng: startLng };
   const end = { lat: endLat, lng: endLng };
