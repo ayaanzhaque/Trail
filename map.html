@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Trail - Map</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script src="./index.js"></script>
+  </head>
+  <body>
+
+    <div id="container">
+      <div id="map"></div>
+    </div>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK_-E8PuX1YkERQnPApl3MOepjGoWQbw0&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
+  </body>
+</html>
+
+<style>
+  html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  height: 100%;
+  display: flex;
+}
+
+#map {
+  flex-basis: 0;
+  flex-grow: 4;
+  height: 100%;
+}
+
+#map {
+  flex: auto;
+}
+
+</style>
+
+<script>
+  function initMap() {
+  const directionsRenderer = new google.maps.DirectionsRenderer();
+  const directionsService = new google.maps.DirectionsService();
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 7,
+    center: { lat: 41.85, lng: -87.65 },
+    disableDefaultUI: true,
+  });
+  directionsRenderer.setMap(map);
+
+  calculateAndDisplayRoute(directionsService, directionsRenderer);
+
+}
+
+function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+
+  const start = { lat: 41.8781, lng: -87.6298 };
+  const end = { lat: 30.2672, lng: -97.7431 };
+
+  directionsService
+    .route({
+      origin: start,
+      destination: end,
+      travelMode: google.maps.TravelMode.WALKING,
+    })
+    .then((response) => {
+      directionsRenderer.setDirections(response);
+    })
+    .catch((e) => window.alert("Directions request failed due to " + status));
+}
+</script>
