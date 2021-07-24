@@ -1,69 +1,102 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Trail - Map</title>
+    <title>Directions Service</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <script src="./index.js"></script>
-  </head>
-  <body>
 
-    <div id="container">
-      <div id="map"></div>
-    </div>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#map {
+  height: 100%;
+}
 
-    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK_-E8PuX1YkERQnPApl3MOepjGoWQbw0&callback=initMap&libraries=&v=weekly"
-      async
-    ></script>
-  </body>
-</html>
-
-<style>
-  html,
+/* Optional: Makes the sample page fill the window. */
+html,
 body {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
-#container {
-  height: 100%;
-  display: flex;
+#floating-panel {
+  position: absolute;
+  top: 10px;
+  left: 25%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: "Roboto", "sans-serif";
+  line-height: 30px;
+  padding-left: 10px;
 }
+    </style>
 
-#map {
-  flex-basis: 0;
-  flex-grow: 4;
-  height: 100%;
-}
+  </head>
+  <body>
+    <div id="floating-panel">
+      <b>Route: </b>
+      <select id="start">
+        <option value="route-1">Route 1</option>
+        <option value="route-2">Route 2</option>
+        <option value="route-3">Route 3</option>
+      </select>
+    </div>
+    <div id="map"></div>
 
-#map {
-  flex: auto;
-}
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK_-E8PuX1YkERQnPApl3MOepjGoWQbw0&callback=initMap&libraries=&v=weekly"
+    async
+    ></script>
+  </body>
 
-</style>
-
-<script>
-  function initMap() {
-  const directionsRenderer = new google.maps.DirectionsRenderer();
+  <script>
+    function initMap() {
   const directionsService = new google.maps.DirectionsService();
+  const directionsRenderer = new google.maps.DirectionsRenderer();
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 7,
     center: { lat: 41.85, lng: -87.65 },
-    disableDefaultUI: true,
   });
   directionsRenderer.setMap(map);
 
-  calculateAndDisplayRoute(directionsService, directionsRenderer);
+  const onChangeHandler = function () {
+    calculateAndDisplayRoute(directionsService, directionsRenderer);
+  };
+  document.getElementById("start").addEventListener("change", onChangeHandler);
 
 }
 
 function calculateAndDisplayRoute(directionsService, directionsRenderer) {
 
-  const start = { lat: 41.8781, lng: -87.6298 };
-  const end = { lat: 30.2672, lng: -97.7431 };
+  var startLat = 41.8781; 
+  var startLng = -87.6298; 
+
+  var endLat = 30.2672; 
+  var endLng = -97.7431;
+
+
+/*
+  if (document.getElementById("start").value == "route-1") {
+    start = { lat: 41.8781, lng: -87.6298 };
+    end = { lat: 30.2672, lng: -97.7431 };
+  } else if (document.getElementById("start").value == "route-2") {
+    start = { lat: 41.8781, lng: -87.6298 };
+    end = { lat: 39.7392, lng: -104.9903 };
+} else if (document.getElementById("start").value == "route-3") {
+  start = { lat: 41.8781, lng: -87.6298 };
+    end = { lat: 40.7128, lng: -74.0060 };
+}
+*/
+
+const start = { lat: startLat, lng: startLng };
+  const end = { lat: endLat, lng: endLng };
+
 
   directionsService
     .route({
@@ -75,5 +108,8 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
       directionsRenderer.setDirections(response);
     })
     .catch((e) => window.alert("Directions request failed due to " + status));
-}
-</script>
+  }
+
+  </script>
+
+</html>
