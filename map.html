@@ -87,7 +87,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
 
   if (document.getElementById("start").value == "route-1") {
 
-    document.getElementById("numberRefugees").innerHTML = "<b>Number of Predicted Refugees: </b> 10000";
+    document.getElementById("numberRefugees").innerHTML = "<b>Number of Predicted Refugees: </b> ~500,000 per year";
     document.getElementById("leavingCountry").innerHTML = "<b>Leaving: </b> Baghdad, Iraq";
     document.getElementById("enteringCountry").innerHTML = "<b>Entering: </b> Diavata Refugee Camp, Greece";
 
@@ -95,6 +95,14 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     .route({
       origin: { lat: 33.3152, lng: 44.3661 },
       destination: { lat: 40.70112979806737, lng: 22.863556358443002 },
+      waypoints: [
+    {
+      location: { lat: 15.3229, lng: 38.9251 },
+      stopover: false
+    },{
+      location: 'Oklahoma City, OK',
+      stopover: true
+    }],
       travelMode: google.maps.TravelMode.WALKING,
     })
     .then((response) => {
@@ -104,7 +112,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
 
   } else if (document.getElementById("start").value == "route-2") {
 
-    document.getElementById("numberRefugees").innerHTML = "<b>Number of Predicted Refugees: </b> 20000";
+    document.getElementById("numberRefugees").innerHTML = "<b>Number of Predicted Refugees: </b> ~800,000 per year";
     document.getElementById("leavingCountry").innerHTML = "<b>Leaving: </b> Aleppo, Syria";
     document.getElementById("enteringCountry").innerHTML = "<b>Entering: </b> Katsikas Refugee Camp, Greece";
 
@@ -112,6 +120,14 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     .route({
       origin: { lat: 36.2022159835648, lng: 37.134401959560826 },
       destination: { lat: 39.609782477471036, lng: 20.901861091025147 },
+      waypoints: [
+    {
+      location: { lat: 15.3229, lng: 38.9251 },
+      stopover: false
+    },{
+      location: 'Oklahoma City, OK',
+      stopover: true
+    }],
       travelMode: google.maps.TravelMode.WALKING,
     })
     .then((response) => {
@@ -121,7 +137,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
 
 } else if (document.getElementById("start").value == "route-3") {
 
-    document.getElementById("numberRefugees").innerHTML = "<b>Number of Predicted Refugees: </b> 30000";
+    document.getElementById("numberRefugees").innerHTML = "<b>Number of Predicted Refugees: </b> ~400,000 per year";
     document.getElementById("leavingCountry").innerHTML = "<b>Leaving: </b> Asmara, Eritrea";
     document.getElementById("enteringCountry").innerHTML = "<b>Entering: </b> Lampedusa, Italy";
 
@@ -129,6 +145,14 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     .route({
       origin: { lat: 15.3229, lng: 38.9251 },
       destination: { lat: 35.5086, lng: 12.5929 },
+      waypoints: [
+    {
+      location: { lat: 15.3229, lng: 38.9251 },
+      stopover: false
+    },{
+      location: 'Oklahoma City, OK',
+      stopover: true
+    }],
       travelMode: google.maps.TravelMode.WALKING,
     })
     .then((response) => {
