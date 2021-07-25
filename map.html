@@ -48,9 +48,9 @@ body {
     </div>
 
      <div id="floating-panel" style="left: 75% !important; text-align: left !important;">
-      <p><b>Number of Predicted Refugees: </b> shawty lodha</p>
-      <p><b>Leaving the country of: </b> shsLand</p>
-      <p><b>Entering the country of: </b> mvLand</p>
+      <p id='numberRefugees'><b>Number of Predicted Refugees: </b> shawty lodha</p>
+      <p id="leavingCountry"><b>Leaving the country of: </b> shsLand</p>
+      <p id="enteringCountry"><b>Entering the country of: </b> mvLand</p>
     </div>
 
     <div id="map"></div>
@@ -87,6 +87,10 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
 
   if (document.getElementById("start").value == "route-1") {
 
+    document.getElementById("numberRefugees").innerHTML = "<b>Number of Predicted Refugees: </b> 10000";
+    document.getElementById("leavingCountry").innerHTML = "<b>Leaving: </b> Baghdad, Iraq";
+    document.getElementById("enteringCountry").innerHTML = "<b>Entering: </b> Diavata Refugee Camp, Greece";
+
     directionsService
     .route({
       origin: { lat: 33.3152, lng: 44.3661 },
@@ -100,6 +104,10 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
 
   } else if (document.getElementById("start").value == "route-2") {
 
+    document.getElementById("numberRefugees").innerHTML = "<b>Number of Predicted Refugees: </b> 20000";
+    document.getElementById("leavingCountry").innerHTML = "<b>Leaving: </b> Aleppo, Syria";
+    document.getElementById("enteringCountry").innerHTML = "<b>Entering: </b> Katsikas Refugee Camp, Greece";
+
     directionsService
     .route({
       origin: { lat: 36.2022159835648, lng: 37.134401959560826 },
@@ -112,6 +120,10 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     .catch((e) => window.alert("Directions request failed due to " + status));
 
 } else if (document.getElementById("start").value == "route-3") {
+
+    document.getElementById("numberRefugees").innerHTML = "<b>Number of Predicted Refugees: </b> 30000";
+    document.getElementById("leavingCountry").innerHTML = "<b>Leaving: </b> Asmara, Eritrea";
+    document.getElementById("enteringCountry").innerHTML = "<b>Entering: </b> Lampedusa, Italy";
 
     directionsService
     .route({
