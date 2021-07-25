@@ -96,6 +96,20 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
       origin: { lat: 33.3152, lng: 44.3661 },
       destination: { lat: 40.70112979806737, lng: 22.863556358443002 },
       waypoints: [
+    
+    {
+      location: { lat: 37.044365, lng: 35.489558 },
+      stopover: true
+    },
+    {
+      location: { lat: 39.896231, lng: 32.855301 },
+      stopover: true
+    },
+    
+    {
+      location: { lat: 40.270906, lng: 32.783014 },
+      stopover: true
+    },
     {
       location: { lat: 41.037199, lng: 29.096089 },
       stopover: true
@@ -119,8 +133,19 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
       destination: { lat: 39.609782477471036, lng: 20.901861091025147 },
       waypoints: [
     {
-      location: { lat: 15.3229, lng: 38.9251 },
-      stopover: false
+      location: { lat: 39.793366, lng: 30.437427 },
+      stopover: true
+    },
+    {
+      location: { lat: 39.204325, lng: 26.466408 },
+      stopover: true
+    },
+    {
+      location: { lat: 37.777252, lng: 26.888126 },
+      stopover: true
+    },{
+      location: { lat: 39.171074, lng: 31.796345 },
+      stopover: true
     }],
       travelMode: google.maps.TravelMode.WALKING,
     })
@@ -141,10 +166,19 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
       destination: { lat: 35.5086, lng: 12.5929 },
       waypoints: [
     {
-      location: { lat: 15.3229, lng: 38.9251 },
-      stopover: false
-    },{
-      location: 'Oklahoma City, OK',
+      location: { lat: 18.390833, lng: 31.862522 },
+      stopover: true
+    },
+    {
+      location: { lat: 30.402913, lng: 19.750641 },
+      stopover: true
+    },
+    {
+      location: { lat: 34.810636, lng: 10.110750 },
+      stopover: true
+    },
+    {
+      location: { lat: 30.052037, lng: 31.351101 },
       stopover: true
     }],
       travelMode: google.maps.TravelMode.WALKING,
