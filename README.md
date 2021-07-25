@@ -2,3 +2,9 @@
 
 # [Trail](https://trailai.tech/)
 Using AI to assist refugee migration
+
+Demo:
+
+Devpost: https://devpost.com/software/trail-i31865
+
+Slides: https://docs.google.com/presentation/d/1xGsUFoCCTkxayUd9w4vqtpR8YF9YF3_zASSnHQnOQQA/edit?usp=sharing
