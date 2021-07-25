@@ -46,6 +46,13 @@ body {
         <option value="route-3">Route 3</option>
       </select>
     </div>
+
+     <div id="floating-panel" style="left: 75% !important; text-align: left !important;">
+      <p><b>Number of Predicted Refugees: </b> shawty lodha</p>
+      <p><b>Leaving the country of: </b> shsLand</p>
+      <p><b>Entering the country of: </b> mvLand</p>
+    </div>
+
     <div id="map"></div>
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
@@ -76,53 +83,50 @@ body {
 
 function calculateAndDisplayRoute(directionsService, directionsRenderer) {
 
-  var startLat = 41.8781; 
-  var startLng = -87.6298; 
-
-  var endLat = 30.2672; 
-  var endLng = -97.7431;
 
 
   if (document.getElementById("start").value == "route-1") {
 
-    startLat = 41.8781; 
-    startLng = -87.6298; 
-
-    endLat = 30.2672; 
-    endLng = -97.7431;
-
-  } else if (document.getElementById("start").value == "route-2") {
-
-    startLat = 41.8781; 
-    startLng = -87.6298; 
-
-    endLat = 39.7392; 
-    endLng = -104.9903;
-
-} else if (document.getElementById("start").value == "route-3") {
-
-    startLat = 41.8781; 
-    startLng = -87.6298; 
-
-    endLat = 40.7128; 
-    endLng = -74.0060;
-}
-
-
-const start = { lat: startLat, lng: startLng };
-  const end = { lat: endLat, lng: endLng };
-
-
-  directionsService
+    directionsService
     .route({
-      origin: start,
-      destination: end,
+      origin: { lat: 33.3152, lng: 44.3661 },
+      destination: { lat: 40.70112979806737, lng: 22.863556358443002 },
       travelMode: google.maps.TravelMode.WALKING,
     })
     .then((response) => {
       directionsRenderer.setDirections(response);
     })
     .catch((e) => window.alert("Directions request failed due to " + status));
+
+  } else if (document.getElementById("start").value == "route-2") {
+
+    directionsService
+    .route({
+      origin: { lat: 36.2022159835648, lng: 37.134401959560826 },
+      destination: { lat: 39.609782477471036, lng: 20.901861091025147 },
+      travelMode: google.maps.TravelMode.WALKING,
+    })
+    .then((response) => {
+      directionsRenderer.setDirections(response);
+    })
+    .catch((e) => window.alert("Directions request failed due to " + status));
+
+} else if (document.getElementById("start").value == "route-3") {
+
+    directionsService
+    .route({
+      origin: { lat: 15.3229, lng: 38.9251 },
+      destination: { lat: 35.5086, lng: 12.5929 },
+      travelMode: google.maps.TravelMode.WALKING,
+    })
+    .then((response) => {
+      directionsRenderer.setDirections(response);
+    })
+    .catch((e) => window.alert("Directions request failed due to " + status));
+}
+
+
+  
   }
 
   </script>
