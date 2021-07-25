@@ -1,74 +1,152 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Trail - Map</title>
+    <title>Directions Service</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <script src="./index.js"></script>
-  </head>
-  <body>
 
-    <div id="container">
-      <div id="map"></div>
-    </div>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#map {
+  height: 100%;
+}
 
-    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK_-E8PuX1YkERQnPApl3MOepjGoWQbw0&callback=initMap&libraries=&v=weekly"
-      async
-    ></script>
-  </body>
-</html>
-
-<style>
-  html,
+/* Optional: Makes the sample page fill the window. */
+html,
 body {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
-#container {
-  height: 100%;
-  display: flex;
+#floating-panel {
+  position: absolute;
+  top: 10px;
+  left: 25%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: "Roboto", "sans-serif";
+  line-height: 30px;
+  padding-left: 10px;
 }
+    </style>
 
-#map {
-  flex-basis: 0;
-  flex-grow: 4;
-  height: 100%;
-}
+  </head>
+  <body>
+    <div id="floating-panel">
+      <b>Route: </b>
+      <select id="start">
+        <option value="route-1">Route 1</option>
+        <option value="route-2">Route 2</option>
+        <option value="route-3">Route 3</option>
+      </select>
+    </div>
 
-#map {
-  flex: auto;
-}
+     <div id="floating-panel" style="left: 75% !important; text-align: left !important;">
+      <p id='numberRefugees'><b>Number of Predicted Refugees: </b> shawty lodha</p>
+      <p id="leavingCountry"><b>Leaving the country of: </b> shsLand</p>
+      <p id="enteringCountry"><b>Entering the country of: </b> mvLand</p>
+    </div>
 
-</style>
+    <div id="map"></div>
 
-<script>
-  function initMap() {
-  const directionsRenderer = new google.maps.DirectionsRenderer();
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK_-E8PuX1YkERQnPApl3MOepjGoWQbw0&callback=initMap&libraries=&v=weekly"
+    async
+    ></script>
+  </body>
+
+  <script>
+    function initMap() {
   const directionsService = new google.maps.DirectionsService();
+  const directionsRenderer = new google.maps.DirectionsRenderer();
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 7,
     center: { lat: 41.85, lng: -87.65 },
-    disableDefaultUI: true,
   });
   directionsRenderer.setMap(map);
 
   calculateAndDisplayRoute(directionsService, directionsRenderer);
 
+  const onChangeHandler = function () {
+    calculateAndDisplayRoute(directionsService, directionsRenderer);
+  };
+  document.getElementById("start").addEventListener("change", onChangeHandler);
+
 }
 
 function calculateAndDisplayRoute(directionsService, directionsRenderer) {
 
-  const start = { lat: 41.8781, lng: -87.6298 };
-  const end = { lat: 30.2672, lng: -97.7431 };
 
-  directionsService
+
+  if (document.getElementById("start").value == "route-1") {
+
+    document.getElementById("numberRefugees").innerHTML = "<b>Number of Predicted Refugees: </b> ~500,000 per year";
+    document.getElementById("leavingCountry").innerHTML = "<b>Leaving: </b> Baghdad, Iraq";
+    document.getElementById("enteringCountry").innerHTML = "<b>Entering: </b> Diavata Refugee Camp, Greece";
+
+    directionsService
     .route({
-      origin: start,
-      destination: end,
+      origin: { lat: 33.3152, lng: 44.3661 },
+      destination: { lat: 40.70112979806737, lng: 22.863556358443002 },
+      waypoints: [
+    {
+      location: { lat: 41.037199, lng: 29.096089 },
+      stopover: true
+    }],
+      travelMode: google.maps.TravelMode.WALKING,
+    })
+    .then((response) => {
+      directionsRenderer.setDirections(response);
+    })
+    .catch((e) => window.alert("Directions request failed due to " + status));
+
+  } else if (document.getElementById("start").value == "route-2") {
+
+    document.getElementById("numberRefugees").innerHTML = "<b>Number of Predicted Refugees: </b> ~800,000 per year";
+    document.getElementById("leavingCountry").innerHTML = "<b>Leaving: </b> Aleppo, Syria";
+    document.getElementById("enteringCountry").innerHTML = "<b>Entering: </b> Katsikas Refugee Camp, Greece";
+
+    directionsService
+    .route({
+      origin: { lat: 36.2022159835648, lng: 37.134401959560826 },
+      destination: { lat: 39.609782477471036, lng: 20.901861091025147 },
+      waypoints: [
+    {
+      location: { lat: 15.3229, lng: 38.9251 },
+      stopover: false
+    }],
+      travelMode: google.maps.TravelMode.WALKING,
+    })
+    .then((response) => {
+      directionsRenderer.setDirections(response);
+    })
+    .catch((e) => window.alert("Directions request failed due to " + status));
+
+} else if (document.getElementById("start").value == "route-3") {
+
+    document.getElementById("numberRefugees").innerHTML = "<b>Number of Predicted Refugees: </b> ~400,000 per year";
+    document.getElementById("leavingCountry").innerHTML = "<b>Leaving: </b> Asmara, Eritrea";
+    document.getElementById("enteringCountry").innerHTML = "<b>Entering: </b> Lampedusa, Italy";
+
+    directionsService
+    .route({
+      origin: { lat: 15.3229, lng: 38.9251 },
+      destination: { lat: 35.5086, lng: 12.5929 },
+      waypoints: [
+    {
+      location: { lat: 15.3229, lng: 38.9251 },
+      stopover: false
+    },{
+      location: 'Oklahoma City, OK',
+      stopover: true
+    }],
       travelMode: google.maps.TravelMode.WALKING,
     })
     .then((response) => {
@@ -76,4 +154,11 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     })
     .catch((e) => window.alert("Directions request failed due to " + status));
 }
-</script>
+
+
+  
+  }
+
+  </script>
+
+</html>
