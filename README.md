@@ -3,6 +3,8 @@
 # [Trail](https://trailai.tech/)
 Using AI to assist refugee migration
 
+- **3rd Place @ Hacking4Community 2021**
+
 Demo: https://youtu.be/Rq6UXNFgeXs
 
 Devpost: https://devpost.com/software/trail-i31865
